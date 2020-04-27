@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">MyOwnBusiness</string>
+    <string name="connect">CONNECT</string>
+    <string name="register">REGISTER</string>
+    <string name="forgotyourpasswd">Forgot your Password?</string>
+    <string name="user">User *</string>
+    <string name="passwd">Password *</string>
+    <string name="accountname">Account Name *</string>
+    <string name="addres">Address *</string>
+    <string name="birth">Birth Date *</string>
+    <string name="emailaddres">Email Address *</string>
+    <string name="mainmenu">MAIN MENU</string>
+    <string name="businessName">Name *</string>
+    <string name="description">Description *</string>
+    <string name="price">Price *</string>
+    <string name="location">Location *</string>
+    <string name="createBusiness">Create Business *</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="enteraddres"> Enter Address, City or Zip Code</string>
+    <string name="firstcat">1st Category</string>
+    <string name="secondcat">2nd Category</string>
+    <string name="thirdcat">3rd Category</string>
+    <string name="profile">PROFILE</string>
+    <string name="searchbusiness">SEARCH BUSINESS</string>
+
+    //Spinner array.
+        <string-array name="categoryspinner">
+            <item>Business Administration</item>
+            <item>Public Administration</item>
+            <item>Client Administration</item>
+            <item>Production</item>
+            <item>Trade and Sales</item>
+            <item>Logistics and Warehouse</item>
+            <item>Design and graphic arts</item>
+            <item>Eductation and Training</item>
+            <item>Finance and Banking</item>
+            <item>Computer and comunications</item>
+            <item>Technicians</item>
+            <item>Contruction</item>
+            <item>Legal</item>
+            <item>Marketing and Comunication</item>
+            <item>Human Resources</item>
+            <item>Health and Wallness</item>
+            <item>Pharmaceutical Sector</item>
+            <item>Others</item>
+        </string-array>
+</resources>
