@@ -9,4 +9,9 @@
     <padding
         android:bottom="4dp"
         android:top="4dp"/>
+    <gradient
+        android:centerColor="@color/colorBackgroundTopEnd"
+        android:startColor="@color/colorBackgroundTopEnd"
+        android:endColor="@color/colorBackgroundTopEnd"
+        android:angle="270" />
 </shape>

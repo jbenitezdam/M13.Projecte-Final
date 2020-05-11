@@ -1,17 +1,11 @@
 package com.example.myownbusiness;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.hitomi.cmlibrary.CircleMenu;
@@ -24,6 +18,7 @@ public class MainMenu extends AppCompatActivity implements PopupMenu.OnMenuItemC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        getSupportActionBar().hide();
         //Instance xml on function.
         instanceXML();
         //Creating circular menu via function --/External Library.
@@ -63,6 +58,8 @@ public class MainMenu extends AppCompatActivity implements PopupMenu.OnMenuItemC
     public void instanceXML() {
         circleMenu = findViewById(R.id.circlemenu);
     }
+
+
     //Function that creates the option Menu via inflate function.
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);

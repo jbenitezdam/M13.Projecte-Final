@@ -10,12 +10,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="right"
         android:background="@color/colorBase"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="280dp"
+            android:text="@string/profile"
+            android:textSize="18dp"
+            android:textColor="@color/White"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/openmenu"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:drawableBottom="@drawable/menu"
+            android:background="@color/colorBase"
+            android:title="OpenMenu"
+            android:onClick="showPopup" />
 
     </LinearLayout>
 
@@ -23,16 +38,201 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:background="@drawable/shapebase"
+        android:layout_height="560dp"
+        android:background="@color/White"
         android:orientation="vertical"
         android:layout_marginLeft="-10dp"
         android:layout_marginRight="-10dp">
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/shapebase"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="10dp"
-            android:layout_height="10dp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:src="@mipmap/imgusuariopaginainicio"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="William Snow"
+                android:textColor="#fff"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Rank:"
+                android:textColor="#fff"
+                android:textSize="21dp"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="-65dp"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/rankone"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="25dp"
+                    android:text="@string/description">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_person_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Javier Pineda Herrera" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="25dp"
+                    android:text="@string/description">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_email_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="smxjbenitez@gmail.com" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="25dp"
+                    android:text="@string/description">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_local_phone_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="+34972623040" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="25dp"
+                    android:text="@string/description">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_location_on_black_24dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Begur, Girona, Spain." />
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingLeft="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:text="@string/description"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_info_black_24dp"/>
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="En este servicio se implementa la venta de productos al port mayor. probamos a vender cara a cara siempre obteniendo los mejores resultados y las mejores reseñas de los clientes."
+                        android:paddingLeft="20dp"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingLeft="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:text="@string/description"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_attach_money_black_24dp"/>
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="24€."
+                        android:paddingLeft="20dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
+
+
 
     <!---Linear que sirve como titulo en la parte inferior.-->
     <LinearLayout

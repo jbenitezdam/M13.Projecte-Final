@@ -16,12 +16,20 @@
     <string name="location">Location *</string>
     <string name="createBusiness">Create Business *</string>
     <string name="title_activity_maps">Map</string>
-    <string name="enteraddres"> Enter Address, City or Zip Code</string>
+    <string name="enteraddres">Enter Address, City or Zip Code</string>
+    <string name="Business_name">Enter Business Name.</string>
     <string name="firstcat">1st Category</string>
     <string name="secondcat">2nd Category</string>
     <string name="thirdcat">3rd Category</string>
     <string name="profile">PROFILE</string>
     <string name="searchbusiness">SEARCH BUSINESS</string>
+    <string name="mybusiness">MY BUSINESS</string>
+    <string name="URL_GET_USUARIOS">http://192.168.1.37:8080/myownbusinessphp/select_usuarios.php</string>
+    <string name="URL_INSERT_USUARIOS">http://192.168.1.37:8080/myownbusinessphp/insert_usuarios.php</string>
+    <string name="URL_GET_SERVICIOS">http://192.168.1.37:8080/myownbusinessphp/select_service.php</string>
+    <string name="URL_INSERT_SERVICIOS">http://192.168.1.37:8080/myownbusinessphp/insert_servicios.php</string>
+    <string name="BBDD_CONNECTION">http://192.168.1.37:8080/myownbusinessphp/connection.php</string>
+    <string name="usererror">Incorrect user or password</string>
 
     //Spinner array.
         <string-array name="categoryspinner">
@@ -32,7 +40,7 @@
             <item>Trade and Sales</item>
             <item>Logistics and Warehouse</item>
             <item>Design and graphic arts</item>
-            <item>Eductation and Training</item>
+            <item>Education and Training</item>
             <item>Finance and Banking</item>
             <item>Computer and comunications</item>
             <item>Technicians</item>

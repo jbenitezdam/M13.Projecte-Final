@@ -25,7 +25,7 @@
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@drawable/shapebase"
+        android:background="@drawable/shapegradient"
         android:orientation="vertical"
         android:layout_marginLeft="-10dp"
         android:layout_marginRight="-10dp">
@@ -38,6 +38,8 @@
         <EditText
             android:id="@+id/user"
             android:hint="USER"
+            android:textColorHint="@color/quantum_grey"
+            android:textColor="@color/White"
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
@@ -46,6 +48,8 @@
         <EditText
             android:id="@+id/passwd"
             android:hint="PASSWORD"
+            android:textColorHint="@color/quantum_grey"
+            android:textColor="@color/White"
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_gravity="center"

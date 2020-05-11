@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class CreateBusiness extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
+        getSupportActionBar().hide();
         instanceXML();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.categoryspinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -91,6 +94,44 @@ public class CreateBusiness extends AppCompatActivity {
 
     public void goMAP() {
         Intent intent = new Intent(CreateBusiness.this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener((PopupMenu.OnMenuItemClickListener) this);
+        popup.inflate(R.menu.desplegable_menu);
+        popup.show();
+    }
+
+    //This function set a method into every button of the popup.
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.Profile:
+                goProfile();
+                return true;
+            case R.id.Menu:
+                goMainMenu();
+                return true;
+            case R.id.Exit:
+                Leave();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void goProfile() {
+        Intent intent = new Intent(CreateBusiness.this,Profile.class);
+        startActivity(intent);
+    }
+    public void Leave() {
+        Intent intent = new Intent(CreateBusiness.this,MainActivity.class);
+        startActivity(intent);
+
+    }
+    public void goMainMenu() {
+        Intent intent = new Intent(CreateBusiness.this,MainMenu.class);
         startActivity(intent);
     }
 }

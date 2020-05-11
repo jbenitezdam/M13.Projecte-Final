@@ -1,10 +1,17 @@
 <resources>
-
+    <style name="desplegable_menu" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/quantum_black_100</item>
+        <item name="background">@color/quantum_black_100</item>
+        <item name="android:color">@color/quantum_black_100</item>
+    </style>
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@android:color/black</item>
+    </style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:popupBackground">@android:color/background_dark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
-
 </resources>
