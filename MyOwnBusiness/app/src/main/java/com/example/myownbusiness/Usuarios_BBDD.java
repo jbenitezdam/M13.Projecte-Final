@@ -1,20 +1,35 @@
 package com.example.myownbusiness;
 
-public class Usuarios_BBDD {
+import java.io.Serializable;
+
+public class Usuarios_BBDD implements Serializable {
 
     private String userCode;
     private String accName;
     private String accPassword;
     private String emailAddress;
     private String birthDate;
+    private String visualName;
+    private String direction;
+    private String phoneNumber;
 
-    public Usuarios_BBDD(String userCode, String accName, String accPassword, String emailAddress, String birthDate) {
+    //Contructor.
+    public Usuarios_BBDD(String userCode, String accName,
+                         String accPassword, String emailAddress, String birthDate, String visualName, String direction, String phoneNumber) {
         this.userCode = userCode;
         this.accName = accName;
         this.accPassword = accPassword;
         this.emailAddress = emailAddress;
         this.birthDate = birthDate;
+        this.visualName = visualName;
+        this.direction = direction;
+        this.phoneNumber = phoneNumber;
     }
+
+    //Void contructor.
+    public Usuarios_BBDD() {
+    }
+
     //GETTER -------------------------------------------------------------------------------------->
     public String getUserCode() {
         return userCode;
@@ -36,7 +51,18 @@ public class Usuarios_BBDD {
         return birthDate;
     }
 
-    //SETTER -------------------------------------------------------------------------------------->
+    public String getVisualName() {
+        return visualName;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    //SETTER -------------------------------------------------------------------------------------->1
+
     public void setUserCode(String userCode) {
         this.userCode = userCode;
     }
@@ -55,5 +81,16 @@ public class Usuarios_BBDD {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void setVisualName(String visualName) {
+        this.visualName = visualName;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

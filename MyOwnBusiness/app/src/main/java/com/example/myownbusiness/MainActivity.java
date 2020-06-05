@@ -28,13 +28,16 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
     BufferedInputStream is;
     String line=null;
     String result=null;
+    //Creamos objeto perfil para ir pasando entre actividaes.
+    Usuarios_BBDD user;
     //--------------------------------------------------------------------------------------------->
+    String userid;
     Button Conn, newUser;
     EditText txtUser,txtPassword;
     TextView txtFgtPasswd,txtError;
     ImageView Img;
     RequestQueue RQ;
-    String[] json_userCode,json_Birthdate,json_userName,json_userPassword,json_emailAddress;
+    String[] json_userCode,json_Birthdate,json_userName,json_userPassword,json_emailAddress,json_visualName,json_direction,json_phonenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +46,19 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
         final Handler handler = new Handler();
         getSupportActionBar().hide();
         RQ = Volley.newRequestQueue(this);
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         //Conn with database users.
         //Log In activity, getting user from Mysql.
         //Function to instance all xml.
+
         InstanceXML();
         //Error text stays invisible since error.
         txtError.setVisibility(View.INVISIBLE);
         //Get all users from BBDD.
         getusers();
-        Conn.setOnClickListener(new View.OnClickListener() {
+        Conn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Compare the user and password to any user that has the same ID_user, via select.
@@ -64,26 +69,29 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
                     while (json_count < json_userName.length && conn) {
 
                         if (txtUser.getText().toString().equals(json_userName[json_count]) && txtPassword.getText().toString().equals(json_userPassword[json_count])) {
-                            //If user and password equals array position then enter.
-
+                            //If user and password are equals then create object with arrayposition json_count.
+                            user = new Usuarios_BBDD(json_userCode[json_count],json_userName[json_count],json_userPassword[json_count],
+                                    json_emailAddress[json_count],json_Birthdate[json_count],json_visualName[json_count],json_direction[json_count],json_phonenumber[json_count]);
                             conn = false;
+                            //Change activity serializing object.
                             GoMenu();
                             Toast.makeText(MainActivity.this, "Connecting...", Toast.LENGTH_SHORT).show();
                         }
                         json_count++;
                     }
-
+                }catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                //Message error in case of error login.
+                if (conn) {
+                    txtError.setVisibility(View.VISIBLE);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // Do something after 2s = 2000ms
-                            txtError.setVisibility(View.VISIBLE);
+                            // Do something after 2s = 2000m
+                            txtError.setVisibility(View.INVISIBLE);
                         }
                     }, 2000);
-                    //Put invisible again.
-                    txtError.setVisibility(View.INVISIBLE);
-                }catch (NullPointerException e) {
-                    e.printStackTrace();
                 }
             }
         });
@@ -108,7 +116,6 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
     }
 
     //FUNCTIONS ----------------------------------------------------------------------------------->
-
     public void getusers() {
         try {
             //getting URL from string xml.
@@ -141,6 +148,9 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
             json_userName= new String[ja.length()];
             json_userPassword= new String[ja.length()];
             json_emailAddress= new String[ja.length()];
+            json_visualName= new String[ja.length()];
+            json_direction= new String[ja.length()];
+            json_phonenumber= new String[ja.length()];
 
             //Insert data into every array position.
             for(int i = 0; i <= ja.length(); i++) {
@@ -150,10 +160,17 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
                 json_userPassword[i] = jo.getString("contraseña_cuenta");
                 json_emailAddress[i] = jo.getString("correo_elec");
                 json_Birthdate[i] = jo.getString("fecha_naci");
+                json_visualName[i] = jo.getString("nombre_visual");
+                json_direction[i] = jo.getString("direction");
+                json_phonenumber[i] = jo.getString("phonenumber");
             }
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void createObject() {
 
     }
 
@@ -217,6 +234,7 @@ public class MainActivity extends AppCompatActivity  implements PopupMenu.OnMenu
 
     private void GoMenu() {
         Intent intent = new Intent(MainActivity.this,MainMenu.class);
+        intent.putExtra("user",user);
         startActivity(intent);
 
     }

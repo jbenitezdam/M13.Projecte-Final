@@ -1,6 +1,8 @@
 package com.example.myownbusiness;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NewUser extends AppCompatActivity {
-    String URL,st_Name,st_Password,st_emailAdddres,st_Birthdate,st_AccName, st_codigo_usuario;
+    String URL,st_Name,st_Password,st_emailAdddres,st_Birthdate,st_AccName, st_codigo_usuario,st_direction,st_phonenumber;
     Button create;
-    EditText name,password,emailaddress,accname,birthdate;
+    EditText name,password,emailaddress,accname,birthdate,direction,phonenumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +37,16 @@ public class NewUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-
+                    //Save all data into new var to set petition.
                     st_Name = name.getText().toString();
                     st_Password = password.getText().toString();
                     st_emailAdddres = emailaddress.getText().toString();
                     st_Birthdate = birthdate.getText().toString();
                     st_AccName = accname.getText().toString();
+                    st_direction = direction.getText().toString();
+                    st_phonenumber = phonenumber.getText().toString();
                     createUserCode(st_Name,st_Password,st_emailAdddres);
+                    //Execute query and insert into database.
                     insertUsuario(URL);
                     Toast.makeText(NewUser.this, "User has been created correctly.", Toast.LENGTH_SHORT).show();
                 }catch (NullPointerException e) {
@@ -53,6 +58,11 @@ public class NewUser extends AppCompatActivity {
 
     }
 
+    private void goMainActivity() {
+        Intent intent = new Intent(NewUser.this,MainActivity.class);
+        startActivity(intent);
+    }
+
     //Instance XML
     private void instanceXML() {
         create = findViewById(R.id.create);
@@ -61,6 +71,9 @@ public class NewUser extends AppCompatActivity {
         emailaddress = findViewById(R.id.email);
         accname = findViewById(R.id.accountname);
         birthdate = findViewById(R.id.birthdate);
+        direction = findViewById(R.id.direction);
+        phonenumber = findViewById(R.id.phonenumber);
+
     }
 
     //Method that creats user code from 3 first characters of user_name, User_password, and Email.
@@ -82,6 +95,7 @@ public class NewUser extends AppCompatActivity {
 
     //Insert into Usuarios de information about the new user via volley.
     //Getting all the string from EditText onClick
+    //Method to put data from new user into database.
     private void insertUsuario(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -103,6 +117,8 @@ public class NewUser extends AppCompatActivity {
                     parametros.put("correo_elec", st_emailAdddres);
                     parametros.put("fecha_naci", st_Birthdate);
                     parametros.put("nombre_visual", st_AccName);
+                    parametros.put("direction", st_direction);
+                    parametros.put("phonenumber", st_phonenumber);
                     return parametros;
             }
         };

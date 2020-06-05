@@ -24,15 +24,18 @@
     <string name="profile">PROFILE</string>
     <string name="searchbusiness">SEARCH BUSINESS</string>
     <string name="mybusiness">MY BUSINESS</string>
-    <string name="URL_GET_USUARIOS">http://192.168.1.37:8080/myownbusinessphp/select_usuarios.php</string>
-    <string name="URL_INSERT_USUARIOS">http://192.168.1.37:8080/myownbusinessphp/insert_usuarios.php</string>
-    <string name="URL_GET_SERVICIOS">http://192.168.1.37:8080/myownbusinessphp/select_service.php</string>
-    <string name="URL_INSERT_SERVICIOS">http://192.168.1.37:8080/myownbusinessphp/insert_servicios.php</string>
-    <string name="BBDD_CONNECTION">http://192.168.1.37:8080/myownbusinessphp/connection.php</string>
+    <string name="URL_GET_USUARIOS">http://192.168.1.36:8080/myownbusinessphp/select_usuarios.php</string>
+    <string name="URL_INSERT_USUARIOS">http://192.168.1.36:8080/myownbusinessphp/insert_usuarios.php</string>
+    <string name="URL_GET_SERVICIOS">http://192.168.1.36:8080/myownbusinessphp/select_service.php</string>
+    <string name="URL_INSERT_SERVICIOS">http://192.168.1.36:8080/myownbusinessphp/insert_servicios.php</string>
+    <string name="BBDD_CONNECTION">http://192.168.1.36:8080/myownbusinessphp/connection.php</string>
     <string name="usererror">Incorrect user or password</string>
+    <string name="phonenumber">Phone Number*</string>
+    <string name="direction">Direction*</string>
 
     //Spinner array.
         <string-array name="categoryspinner">
+            <item>Void.</item>
             <item>Business Administration</item>
             <item>Public Administration</item>
             <item>Client Administration</item>

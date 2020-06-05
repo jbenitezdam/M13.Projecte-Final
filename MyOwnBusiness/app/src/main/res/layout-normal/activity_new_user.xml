@@ -138,6 +138,46 @@
             android:textColor="@color/White"
             android:textSize="16dp" />
 
+        <TextView
+            android:id="@+id/txtdirection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/direction"
+            android:textColor="@color/White"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_marginRight="30dp"
+            android:id="@+id/direction"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/White"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/txtphonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/phonenumber"
+            android:textColor="@color/White"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_marginRight="30dp"
+            android:id="@+id/phonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/White"
+            android:textSize="16dp" />
+
         <Button
             android:layout_marginRight="30dp"
             android:id="@+id/create"

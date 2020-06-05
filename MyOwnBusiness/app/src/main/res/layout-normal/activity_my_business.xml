@@ -53,7 +53,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="380dp"
                 android:src="@mipmap/imgusuariopaginainicio"
                 />
             <TextView
@@ -75,12 +75,13 @@
                 android:layout_marginTop="20dp"/>
         </LinearLayout>
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="-65dp"
+            android:layout_marginTop="-45dp"
             android:layout_gravity="center"
             android:layout_width="150dp"
-            android:layout_height="120dp">
+            android:layout_height="100dp">
 
             <ImageView
+                android:id="@+id/imgrank"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@mipmap/rankone"/>
@@ -88,10 +89,13 @@
         </androidx.cardview.widget.CardView>
 
         <ScrollView
+            android:background="@color/colorBackgroundTopEnd"
             android:layout_width="match_parent"
+            android:layout_marginTop="-40dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -111,6 +115,8 @@
                         android:src="@drawable/ic_person_black_24dp" />
 
                     <TextView
+                        android:id="@+id/name"
+                        android:textColor="@color/colorBackgroundwhite"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -134,6 +140,8 @@
                         android:src="@drawable/ic_email_black_24dp" />
 
                     <TextView
+                        android:textColor="@color/colorBackgroundwhite"
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -143,6 +151,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:textColor="@color/colorBackgroundwhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -157,6 +166,8 @@
                         android:src="@drawable/ic_local_phone_black_24dp" />
 
                     <TextView
+                        android:textColor="@color/colorBackgroundwhite"
+                        android:id="@+id/phonenumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -166,6 +177,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:textColor="@color/colorBackgroundwhite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -180,6 +192,8 @@
                         android:src="@drawable/ic_location_on_black_24dp" />
 
                     <TextView
+                        android:textColor="@color/colorBackgroundwhite"
+                        android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -199,6 +213,8 @@
                         android:layout_height="36dp"
                         android:src="@drawable/ic_info_black_24dp"/>
                     <TextView
+                        android:textColor="@color/colorBackgroundwhite"
+                        android:id="@+id/description"
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -220,6 +236,8 @@
                         android:layout_height="36dp"
                         android:src="@drawable/ic_attach_money_black_24dp"/>
                     <TextView
+                        android:textColor="@color/colorBackgroundwhite"
+                        android:id="@+id/price"
                         android:gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

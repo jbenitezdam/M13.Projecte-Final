@@ -62,7 +62,6 @@
                 android:src="@drawable/ic_magnify"/>
 
             <EditText
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/ic_search"
@@ -73,10 +72,42 @@
                 android:background="@null"
                 android:hint="@string/Business_name"/>
         </RelativeLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/searchname"
+                android:text="name"
+                android:layout_width="80dp"
+                android:background="@drawable/circularborderbuttonshape"
+                android:layout_height="40dp"
+                />
+            <Button
+                android:id="@+id/searchbylocation"
+                android:layout_width="80dp"
+                android:background="@drawable/circularborderbuttonshape"
+                android:layout_margin="40dp"
+                android:layout_height="40dp"
+                android:text="locate"
+                />
+            <Button
+                android:id="@+id/searchbyprice"
+                android:layout_width="80dp"
+                android:background="@drawable/circularborderbuttonshape"
+                android:layout_height="40dp"
+                android:text="price"
+                />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Recycler"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"

@@ -3,72 +3,119 @@ package com.example.myownbusiness;
 import java.io.Serializable;
 
 public class dealClass implements Serializable {
-    //VAR
-    String Name;
-    String Description;
-    String Location;
-    String firstCat;
-    String secondCat;
-    String thirdCat;
-    short Price;
+    //Contants
+    String codigo_servicio;
+    String codigo_usuario;
+    String nombre;
+    String categoria1;
+    String categoria2;
+    String categoria3;
+    String localizacion;
+    String precio;
 
-    //DECLARATION
-    public dealClass(String name, String description, String location, String firstcat, String secondcat, String thirdcat, short price) {
+    //Contuctor with al vars.
+    public dealClass(String codigo_servicio, String codigo_usuario, String nombre, String categoria1,
+                          String categoria2, String categoria3, String localizacion, String precio, String descripcion, String rango) {
+        this.codigo_servicio = codigo_servicio;
+        this.codigo_usuario = codigo_usuario;
+        this.nombre = nombre;
+        this.categoria1 = categoria1;
+        this.categoria2 = categoria2;
+        this.categoria3 = categoria3;
+        this.localizacion = localizacion;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.rango = rango;
+    }
 
-        Name = name;
-        Description = description;
-        Location = location;
-        firstCat = firstcat;
-        secondCat = secondcat;
-        thirdCat = thirdcat;
-        Price = price;
+    //Void contructor.
+    public dealClass() {
+    }
 
+    //GETTERS-------------------------------------------------------------------------------------->
+    public String getCodigo_servicio() {
+        return codigo_servicio;
+    }
+
+    public void setCodigo_servicio(String codigo_servicio) {
+        this.codigo_servicio = codigo_servicio;
+    }
+
+    public String getCodigo_usuario() {
+        return codigo_usuario;
+    }
+
+    public void setCodigo_usuario(String codigo_usuario) {
+        this.codigo_usuario = codigo_usuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCategoria1() {
+        return categoria1;
+    }
+
+    public void setCategoria1(String categoria1) {
+        this.categoria1 = categoria1;
+    }
+
+    public String getCategoria2() {
+        return categoria2;
+    }
+
+    public void setCategoria2(String categoria2) {
+        this.categoria2 = categoria2;
+    }
+
+    public String getCategoria3() {
+        return categoria3;
+    }
+
+    public void setCategoria3(String categoria3) {
+        this.categoria3 = categoria3;
+    }
+
+    public String getLocalizacion() {
+        return localizacion;
     }
 
     //SETTERS-------------------------------------------------------------------------------------->
 
-    public void setName(String name) {
-        Name = name;
-    }
-    public void setDescription(String description) {
-        Description = description;
-    }
-    public void setLocation(String location) {
-        Location = location;
-    }
-    public void setFirstCat(String firstcat) {
-        firstCat = firstcat;
-    }
-    public void setSecondCat(String secondcat) {
-        secondCat = secondcat;
-    }
-    public void setThirdCat(String thirdcat) {
-        thirdCat = thirdcat;
-    }
-    public void setPrice(short price) {
-        Price = price;
+    public void setLocalizacion(String localizacion) {
+        this.localizacion = localizacion;
     }
 
-    //GETTERS ------------------------------------------------------------------------------------->
-    public String getName() {
-        return Name;
+    public String getPrecio() {
+        return precio;
     }
-    public String getDescription() {
-        return Description;
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
     }
-    public String getLocation() {
-        return Location;
+
+    public String getDescripcion() {
+        return descripcion;
     }
-    public String getFirstCat() {
-        return firstCat;
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    public String getSecondCat() {
-        return secondCat;
+
+    public String getRango() {
+        return rango;
     }
-    public String getThirdCat() {
-        return thirdCat;
+
+    public void setRango(String rango) {
+        this.rango = rango;
     }
-    public short getPrice() {
-        return Price;
-    }
+
+    String descripcion;
+    String rango;
+
 }

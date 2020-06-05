@@ -7,7 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,62 +24,170 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.myownbusiness.R.drawable.circularborderbuttonshape;
+import static com.example.myownbusiness.R.drawable.clickedcircularborderbuttonshape;
+
 public class SearchBusiness extends AppCompatActivity {
     RecyclerView mRecyclerView;
     MyAdapter myAdapter;
     //Constant for getting  array of all business.
-    String[] json_codigo_servicio,json_codigo_usuario,json_categoria1,json_categoria2,json_categoria3,json_precio,json_descripcion,json_rango;
     BufferedInputStream is;
+    int cAlist;
+    dealClass business,DealSelected;
     String line=null;
     String result=null;
+    int nrank;
+    ImageButton ic_search;
+    EditText searchEl;
+    Button sByPrice, sByName, sByLocate;
+    ArrayList<dealClass> alist= null;
+    ArrayList<dealClass> alistsearch= null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_search_business);
+        //instance all xml objects.
+        alist = new ArrayList<>();
+        alistsearch = new ArrayList<>();
         instanceXML();
-
+        //Get Intent
+        Intent i = getIntent();
+        alist = (ArrayList<dealClass>) getIntent().getSerializableExtra("alistbusiness");
+        //Instance RecyclerView.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         myAdapter = new MyAdapter(this,getMyList());
         mRecyclerView.setAdapter(myAdapter);
+        cAlist = alist.size();
+        mRecyclerView.addOnItemTouchListener(
+                //Click listener for every item on the list taking position.
+                new RecyclerItemClickListener(this, mRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        //Create object deal class to pass it between activities.
+                        DealSelected = new dealClass(alist.get(position).codigo_servicio,alist.get(position).codigo_usuario,
+                                alist.get(position).nombre,alist.get(position).categoria1,alist.get(position).categoria2,alist.get(position).categoria3
+                        ,alist.get(position).localizacion,alist.get(position).precio,alist.get(position).descripcion,alist.get(position).rango);
+                        nrank = position;
+                        goMyBusiness();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Toast.makeText(SearchBusiness.this, alist.get(position).localizacion.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        );
+
+        ic_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchElement();
+            }
+        });
+
+        sByName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sByName.setBackgroundResource(clickedcircularborderbuttonshape);
+                sByLocate.setBackgroundResource(circularborderbuttonshape);
+                sByPrice.setBackgroundResource(circularborderbuttonshape);
+            }
+        });
+
+        sByPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sByName.setBackgroundResource(circularborderbuttonshape);
+                sByLocate.setBackgroundResource(circularborderbuttonshape);
+                sByPrice.setBackgroundResource(clickedcircularborderbuttonshape);
+            }
+        });
+
+        sByLocate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sByName.setBackgroundResource(circularborderbuttonshape);
+                sByLocate.setBackgroundResource(clickedcircularborderbuttonshape);
+                sByPrice.setBackgroundResource(circularborderbuttonshape);
+            }
+        });
     }
 
     //FUNCTIONS ----------------------------------------------------------------------------------->
 
-    public void instanceXML() {
+    private void instanceXML() {
         mRecyclerView = findViewById(R.id.Recycler);
+        ic_search = findViewById(R.id.ic_search);
+        searchEl = findViewById(R.id.search);
+        sByPrice = findViewById(R.id.searchbyprice);
+        sByName = findViewById(R.id.searchname);
+        sByLocate = findViewById(R.id.searchbylocation);
     }
 
+    //Function searching elements into arraylist.
+    private void searchElement() {
+        String Searching = searchEl.getText().toString();
+        int i = 0;
+        while (i != cAlist) {
+            //if name of Businees is equal to element searched then include it into new arraylist.
+            if (alist.get(i).getNombre().toString().equals(Searching)) {
+                alistsearch.add(alist.get(i));
+            }
+            alist.add(alist.get(i));
+            i++;
+        }
+        //now Create model to create the new list.
+        myAdapter = new MyAdapter(this,getMyListSearched());
+        mRecyclerView.setAdapter(myAdapter);
+
+    }
+
+
+    //method for creating all  list elements  from ArrayList.size();
     private ArrayList<Model> getMyList() {
         ArrayList<Model> models = new ArrayList<>();
+        cAlist = 0;
+        while (cAlist != alist.size()) {
+            //Create new object dealclass
+            business = new dealClass();
+            business = alist.get(cAlist);
+            Model m = new Model();
+            m.setTitle(business.getNombre().toString());
+            m.setDesc(business.getDescripcion().toString());
+            switch (cAlist) {
+                case 0: m.setImg(R.mipmap.rangouno);
+                    break;
+                case 1: m.setImg(R.mipmap.rangodos);
+                    break;
+                case 2: m.setImg(R.mipmap.rangotres);
+                    break;
+                default:m.setImg(R.mipmap.sinrango);
+                    break;
+            }
 
-        Model m = new Model();
-        m.setTitle("First Rank");
-        m.setDesc("This Simbol represents top 1 Business.");
-        m.setImg(R.mipmap.rankone_round);
-        models.add(m);
-
-        Model mi = new Model();
-        mi.setTitle("Second Rank");
-        mi.setDesc("This Simbol represents top 2 Business.");
-        mi.setImg(R.mipmap.rankone_round);
-        models.add(mi);
-
-        Model me = new Model();
-        me.setTitle("Third");
-        me.setDesc("This Simbol represents top 3 Business.");
-        me.setImg(R.mipmap.rankone_round);
-        models.add(me);
-
-        Model ma = new Model();
-        ma.setTitle("Four");
-        ma.setDesc("Not on top but give a chance.");
-        ma.setImg(R.mipmap.rankone_round);
-        models.add(ma);
-
+            models.add(m);
+            cAlist++;
+        }
         return models;
     }
+
+    private ArrayList<Model> getMyListSearched() {
+        ArrayList<Model> models = new ArrayList<>();
+        cAlist = 0;
+        while (cAlist != alistsearch.size()) {
+            //Create new object dealclass
+            business = new dealClass();
+            business = alistsearch.get(cAlist);
+            Model m = new Model();
+            m.setTitle(business.getNombre().toString());
+            m.setDesc(business.getDescripcion().toString());
+            m.setImg(R.mipmap.rankone_round);
+            models.add(m);
+            cAlist++;
+        }
+        return models;
+    }
+
+
 
     //Function that creates the option Menu via inflate function.
     public void showPopup(View v) {
@@ -84,61 +196,6 @@ public class SearchBusiness extends AppCompatActivity {
         popup.inflate(R.menu.desplegable_menu);
         popup.show();
     }
-
-    public void getusers() {
-        try {
-            //Getting url  from string xml
-            URL url = new URL(getString(R.string.URL_GET_SERVICIOS));
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            conn.setRequestMethod("GET");
-            is = new BufferedInputStream(conn.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-            while ((line=br.readLine())!=null) {
-                sb.append(line+"\n");
-            }
-            is.close();
-            result=sb.toString();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            //Inicialize array with JsonArray length.
-            JSONArray ja = new JSONArray(result);
-            JSONObject jo = null;
-            json_codigo_servicio = new String[ja.length()];
-            json_codigo_usuario = new String[ja.length()];
-            json_categoria1= new String[ja.length()];
-            json_categoria2= new String[ja.length()];
-            json_categoria3= new String[ja.length()];
-            json_precio= new String[ja.length()];
-            json_descripcion= new String[ja.length()];
-            json_rango= new String[ja.length()];
-
-            //Insert into every array position the json data.
-            for(int i = 0; i <= ja.length(); i++) {
-                jo=ja.getJSONObject(i);
-                json_codigo_servicio[i] = jo.getString("codigo_servicio");
-                json_codigo_usuario[i] = jo.getString("codigo_usuario");
-                json_categoria1[i] = jo.getString("categoria1");
-                json_categoria2[i] = jo.getString("categoria2");
-                json_categoria3[i] = jo.getString("categoria3");
-                json_precio[i] = jo.getString("precio");
-                json_descripcion[i] = jo.getString("descripcion");
-                json_rango[i] = jo.getString("rango");
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     //This function set a method into every button of the popup.
     public boolean onMenuItemClick(MenuItem item) {
@@ -171,6 +228,14 @@ public class SearchBusiness extends AppCompatActivity {
 
     public void Leave() {
         Intent intent = new Intent(SearchBusiness.this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goMyBusiness() {
+
+        Intent intent = new Intent(SearchBusiness.this,MyBusiness.class);
+        intent.putExtra("business",DealSelected);
+        intent.putExtra("rank",nrank);
         startActivity(intent);
     }
 }

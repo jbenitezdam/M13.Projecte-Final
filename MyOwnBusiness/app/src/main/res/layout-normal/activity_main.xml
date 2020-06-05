@@ -32,11 +32,10 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:src="@android:mipmap/sym_def_app_icon" />
+            android:src="@mipmap/fotoperfilusuario3_foreground" />
 
         <EditText
             android:id="@+id/user"
@@ -45,7 +44,6 @@
             android:textColor="@color/White"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
             android:hint="USER" />
 
         <EditText
@@ -56,6 +54,8 @@
             android:textColor="@color/White"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:ems="10"
+            android:inputType="textPassword"
             android:hint="PASSWORD" />
 
         <TextView
@@ -101,6 +101,7 @@
             android:text="@string/forgotyourpasswd"
             android:textColor="@color/White"
             android:textSize="12dp" />
+
     </LinearLayout>
 
     <LinearLayout

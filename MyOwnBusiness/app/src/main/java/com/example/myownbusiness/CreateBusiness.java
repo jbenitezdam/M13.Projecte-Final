@@ -14,8 +14,20 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class CreateBusiness extends AppCompatActivity {
 
+    String URL,etname,etlocation,etfirstcat,etsecondcat,etthirdcat,etprice,etdescription;
     ImageButton searchLocation;
     Spinner firstcat,secondcat,thirdcat;
     EditText Name,Location,Price,Description;
@@ -28,6 +40,7 @@ public class CreateBusiness extends AppCompatActivity {
         setContentView(R.layout.activity_create_business);
         getSupportActionBar().hide();
         instanceXML();
+        URL = getString(R.string.URL_GET_SERVICIOS);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.categoryspinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstcat.setAdapter(adapter);
@@ -36,6 +49,7 @@ public class CreateBusiness extends AppCompatActivity {
         searchLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 goMAP();
             }
         });
@@ -43,13 +57,23 @@ public class CreateBusiness extends AppCompatActivity {
         CreateDeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createDeal();
+                try {
+                    etname = Name.getText().toString();
+                    etlocation = Location.getText().toString();
+                    etfirstcat = firstcat.getSelectedItem().toString();
+                    etsecondcat = secondcat.getSelectedItem().toString();
+                    etthirdcat = thirdcat.getSelectedItem().toString();
+                    etprice = Price.getText().toString();
+                    etdescription = Description.getText().toString();
+
+                    insertUsuario(URL);
+                    Toast.makeText(CreateBusiness.this, "Business Created Correctly.", Toast.LENGTH_SHORT).show();
+                }catch (NullPointerException e) {
+                    Toast.makeText(CreateBusiness.this, "Some field is void.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
-
-
 
     //FUNCTIONS------------------------------------------------------------------------------------>
     public void instanceXML() {
@@ -64,31 +88,36 @@ public class CreateBusiness extends AppCompatActivity {
         CreateDeal = findViewById(R.id.create);
     }
 
-    //get String from edittext and converting then into object dealClass.
-    public void createDeal() {
-        try {
-            //In case any Field missing
-            if (Name.getText().toString().equals("") || Name.getText().toString().equals(null)
-                    || Location.getText().toString().equals("") || Location.getText().toString().equals(null)
-                    || Price.getText().toString().equals("") || Price.getText().toString().equals(null)) {
-                Toast.makeText(this, "Error, Some values have not been introduced.", Toast.LENGTH_SHORT).show();
+    //Getting all the string from EditText onClick
+    //Method to put data from new business into database.
+    private void insertUsuario(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
             }
-            //Case to do not miss any Field.
-            else {
-                //Create obj deal that we will use to introduce info into BBDD.
-                short short_price = Short.parseShort(Price.getText().toString());
-                Deal = new dealClass(Name.getText().toString(),Description.getText().toString(),Location.getText().toString(),firstcat.getSelectedItem().toString(),
-                        secondcat.getSelectedItem().toString(),thirdcat.getSelectedItem().toString(),short_price);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
-
-
-        }catch(Exception e) {
-            System.out.println("Error al introducir ");
-            Toast.makeText(this, "Error, Some values have not been introduced.", Toast.LENGTH_SHORT).show();
-        }
-
-
-
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("codigo_usuario",etname);
+                parametros.put("nombre", etname);
+                parametros.put("categoria1", etfirstcat);
+                parametros.put("categoria2", etsecondcat);
+                parametros.put("categoria3", etthirdcat);
+                parametros.put("localizacion", etlocation);
+                parametros.put("precio", etprice);
+                parametros.put("descripcion", etdescription);
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 
